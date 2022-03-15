@@ -1,137 +1,123 @@
 // DOM Elements
-const firstNameInput = document.getElementById("first");
-const lastNameInput = document.getElementById("last");
-const emailInput = document.getElementById("email");
-const birthdateInput = document.getElementById("birthdate");
-const quantityInput = document.getElementById("quantity");
-const conditionsInput = document.getElementById("checkbox1");
 const formData = document.querySelectorAll(".formData");
+const modalBody = document.querySelector(".modal-body");
 
-// regex formats
-const nameFormat = /^[a-z ,.'-]+$/i;
-const emailFormat = /^\S+@\S+\.\S+$/;
-const birthdateFormat = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-const quantityFormat = /^[0-9]+$/;
+// Input fields data
+const fields = {
+  firstName: {
+    selector: "#first",
+    regex: /^[a-z ,.'-]{2,}$/i,
+    formDataIndex: 0, // Used to display error messages
+  },
+  lastName: {
+    selector: "#last",
+    regex: /^[a-z ,.'-]{2,}$/i,
+    formDataIndex: 1,
+  },
+  email: {
+    selector: "#email",
+    regex: /^\S+@\S+\.\S+$/,
+    formDataIndex: 2,
+  },
+  birthdate: {
+    selector: "#birthdate",
+    regex: /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/,
+    formDataIndex: 3,
+  },
+  quantity: {
+    selector: "#quantity",
+    regex: /^[0-9]+$/,
+    formDataIndex: 4,
+  },
+  location: {
+    selector: ".formData:nth-child(7)",
+    inputType: "radio",
+    checkedRadio: "input[name='location']:checked",
+    formDataIndex: 5,
+  },
+  conditions: {
+    selector: "#checkbox1",
+    inputType: "checkbox",
+    formDataIndex: 6,
+  },
+};
 
-// validate input formats w/ regex
-const firstNameIsValid = (firstName) =>
-  firstName.toLowerCase().match(nameFormat) === null ? false : true;
-const lastNameIsValid = (lastName) =>
-  lastName.toLowerCase().match(nameFormat) === null ? false : true;
-const emailIsValid = (email) =>
-  email.toLowerCase().match(emailFormat) === null ? false : true;
-const birthdateIsValid = (birthdate) =>
-  birthdate.toLowerCase().match(birthdateFormat) === null ? false : true;
-const quantityIsValid = (quantity) =>
-  quantity.toLowerCase().match(quantityFormat) === null ? false : true;
-
-// check fields and display errors if needed
-function checkFirstName() {
-  const firstName = firstNameInput.value;
-  if (firstNameIsValid(firstName) && firstName.length > 2) {
-    formData[0].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[0].setAttribute("data-error-visible", "true");
-    return false;
-  }
+function validateInput(input, regex) {
+  return regex.test(input.value.toLowerCase());
 }
 
-function checkLastName() {
-  const lastName = lastNameInput.value;
-  if (lastNameIsValid(lastName) && lastName.length > 2) {
-    formData[1].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[1].setAttribute("data-error-visible", "true");
-    return false;
-  }
+function displayError(inputIsValid, formDataIndex) {
+  // Sets the attribute data-error-visible to true or false depending on the value of inputIsValid.
+  formData[formDataIndex].setAttribute("data-error-visible", `${inputIsValid ? "false" : "true"}`);
 }
 
-function checkEmail() {
-  const email = emailInput.value;
-  if (emailIsValid(email)) {
-    formData[2].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[2].setAttribute("data-error-visible", "true");
-    return false;
-  }
+function displayThankYou() {
+  // Displays a thank you message to the user.
+  modalBody.innerHTML =
+    "<p class='thankYou-text'>Merci pour<br>votre inscription</p><button onclick='closeModal()' class='button btn-submit'>Fermer</button>";
 }
 
-function checkBirthdate() {
-  const birthdate = birthdateInput.value;
-  if (birthdateIsValid(birthdate)) {
-    formData[3].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[3].setAttribute("data-error-visible", "true");
-    return false;
+// Form validation on change
+for (let i in fields) {
+  let field = fields[i];
+
+  if (field.inputType === "radio") {
+    document
+      .querySelector(field.selector)
+      .addEventListener("click", () =>
+        displayError(document.querySelector(field.checkedRadio), field.formDataIndex)
+      );
+  }
+
+  if (field.inputType === "checkbox") {
+    document
+      .querySelector(field.selector)
+      .addEventListener("change", () =>
+        displayError(document.querySelector(field.selector).checked, field.formDataIndex)
+      );
+  }
+
+  if (!field.inputType) {
+    document
+      .querySelector(field.selector)
+      .addEventListener("change", () =>
+        displayError(
+          validateInput(document.querySelector(field.selector), field.regex),
+          field.formDataIndex
+        )
+      );
   }
 }
-
-function checkQuantity() {
-  const quantity = quantityInput.value;
-  if (quantityIsValid(quantity)) {
-    formData[4].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[4].setAttribute("data-error-visible", "true");
-    return false;
-  }
-}
-
-function checkLocation() {
-  const locationInput = document.querySelector(
-    'input[name="location"]:checked'
-  );
-  if (locationInput != null) {
-    formData[5].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[5].setAttribute("data-error-visible", "true");
-    return false;
-  }
-}
-
-function checkConditions() {
-  if (conditionsInput.checked) {
-    formData[6].setAttribute("data-error-visible", "false");
-    return true;
-  } else {
-    formData[6].setAttribute("data-error-visible", "true");
-    return false;
-  }
-}
-
-// form validation on input
-firstNameInput.addEventListener("change", () => checkFirstName());
-lastNameInput.addEventListener("change", () => checkLastName());
-emailInput.addEventListener("change", () => checkEmail());
-birthdateInput.addEventListener("change", () => checkBirthdate());
-quantityInput.addEventListener("change", () => checkQuantity());
-conditionsInput.addEventListener("change", () => checkConditions());
 
 // form validation on submit
 function validate() {
-  if (
-    checkFirstName() &&
-    checkLastName() &&
-    checkEmail() &&
-    checkBirthdate() &&
-    checkQuantity() &&
-    checkLocation() &&
-    checkConditions()
-  ) {
-    return true;
-  } else {
-    checkFirstName();
-    checkLastName();
-    checkEmail();
-    checkBirthdate();
-    checkQuantity();
-    checkLocation();
-    checkConditions();
-    return false;
+  let formIsValid = true;
+
+  for (let i in fields) {
+    let field = fields[i];
+    if (field.inputType === "radio") {
+      if (!document.querySelector(field.checkedRadio)) {
+        displayError(false, field.formDataIndex);
+        formIsValid = false;
+      }
+    }
+
+    if (field.inputType === "checkbox") {
+      if (!document.querySelector(field.selector)) {
+        displayError(false, field.formDataIndex);
+        formIsValid = false;
+      }
+    }
+
+    // default
+    if (!field.inputType) {
+      if (!validateInput(document.querySelector(field.selector), field.regex)) {
+        displayError(false, field.formDataIndex);
+        formIsValid = false;
+      }
+    }
   }
+
+  if (formIsValid) displayThankYou();
+  return false;
 }
