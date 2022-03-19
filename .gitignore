@@ -1,1 +1,7 @@
 .DS_Store
+node_modules/
+
+starterOnly/.eslintrc.json
+starterOnly/.prettierrc.json
+starterOnly/package-lock.json
+starterOnly/package.json

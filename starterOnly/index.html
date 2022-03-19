@@ -9,9 +9,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans"
+      rel="stylesheet"
+    />
   </head>
-
   <body>
     <!-- nav -->
     <header class="topnav" id="myTopnav">
@@ -19,14 +21,14 @@
         <img alt="logo" src="Logo.png" />
       </div>
       <div class="main-navbar">
-        <a href="javascript:void(0);" class="icon" onclick="editNav()">
-          <i class="fa fa-bars"></i>
-        </a>
         <a href="#" class="active"><span>Accueil</span></a>
         <a href="#"><span>Détails de l'évènement</span></a>
         <a href="#"><span>À propos</span></a>
         <a href="#"><span>Contact</span></a>
         <a href="#"><span>Évènements passés</span></a>
+        <a href="javascript:void(0);" class="icon" onclick="editNav()">
+          <i class="fa fa-bars"></i>
+        </a>
       </div>
     </header>
     <main>
@@ -38,8 +40,8 @@
             de jeux vidéos
           </h1>
           <p class="hero-text">
-            Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places
-            limitées !
+            Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux
+            réservations... Places limitées !
           </p>
           <button class="btn-signup modal-btn">je m'inscris</button>
         </div>
@@ -68,11 +70,25 @@
                 data-error="Entrez un prénom valide."
               >
                 <label for="first">Prénom</label><br />
-                <input class="text-control" type="text" id="first" name="first" /><br />
+                <input
+                  class="text-control"
+                  type="text"
+                  id="first"
+                  name="first"
+                /><br />
               </div>
-              <div class="formData" data-error="Entrez un nom valide." data-error-visible="false">
+              <div
+                class="formData"
+                data-error="Entrez un nom valide."
+                data-error-visible="false"
+              >
                 <label for="last">Nom</label><br />
-                <input class="text-control" type="text" id="last" name="last" /><br />
+                <input
+                  class="text-control"
+                  type="text"
+                  id="last"
+                  name="last"
+                /><br />
               </div>
               <div
                 class="formData"
@@ -80,7 +96,12 @@
                 data-error="Entrez un e-mail valide."
               >
                 <label for="email">E-mail</label><br />
-                <input class="text-control" type="email" id="email" name="email" /><br />
+                <input
+                  class="text-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                /><br />
               </div>
               <div
                 class="formData"
@@ -88,14 +109,21 @@
                 data-error="Entrez votre date de naissance."
               >
                 <label for="birthdate">Date de naissance</label><br />
-                <input class="text-control" type="date" id="birthdate" name="birthdate" /><br />
+                <input
+                  class="text-control"
+                  type="date"
+                  id="birthdate"
+                  name="birthdate"
+                /><br />
               </div>
               <div
                 class="formData"
                 data-error-visible="false"
                 data-error="Ce champ est obligatoire"
               >
-                <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label
+                <label for="quantity"
+                  >À combien de tournois GameOn avez-vous déjà participé
+                  ?</label
                 ><br />
                 <input
                   type="number"
@@ -106,8 +134,14 @@
                   max="99"
                 />
               </div>
-              <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div class="formData" data-error-visible="false" data-error="Choisissez une option.">
+              <p class="text-label">
+                A quel tournoi souhaitez-vous participer cette année ?
+              </p>
+              <div
+                class="formData"
+                data-error-visible="false"
+                data-error="Choisissez une option."
+              >
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -181,7 +215,12 @@
                 data-error-visible="false"
                 data-error="Vous devez accepter les termes et conditions."
               >
-                <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
+                <input
+                  class="checkbox-input"
+                  type="checkbox"
+                  id="checkbox1"
+                  checked
+                />
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
@@ -194,7 +233,11 @@
                 </label>
                 <br />
               </div>
-              <input class="button btn-submit" type="submit" value="C'est parti" />
+              <input
+                class="button btn-submit"
+                type="submit"
+                value="C'est parti"
+              />
             </form>
           </div>
         </div>
