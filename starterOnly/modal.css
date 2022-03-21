@@ -1,5 +1,5 @@
 :root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-default: 'DM Sans', Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
@@ -59,12 +59,11 @@ img {
 }
 
 .topnav a {
-  /* float: left; */
   display: block;
   color: #000000;
   text-align: center;
   padding: 12px 12px;
-  margin: 5px 0px;
+  margin: 5px;
   text-decoration: none;
   white-space: nowrap;
   font-size: 18px;
@@ -86,6 +85,11 @@ img {
 .topnav .icon {
   color: #ff0000;
   display: none;
+  width: auto;
+}
+
+.topnav .icon i {
+  padding: 0 3.5px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -118,13 +122,8 @@ img {
 
 @media screen and (max-width: 768px) {
   .main-navbar {
-    margin-top: 75px;
+    margin-top: 80px;
     right: 15px;
-  }
-
-  .topnav a.icon {
-    margin-top: -50px;
-    font-size: 1.2rem;
   }
 
   .header-logo img {
@@ -136,10 +135,6 @@ img {
   .main-navbar {
     margin-top: 62px;
     right: 10px;
-  }
-
-  .topnav a.icon {
-    font-size: 1rem;
   }
 
   .header-logo img {
@@ -189,7 +184,7 @@ main {
 
 .thankYou-text {
   text-align: center;
-  margin: 325px 0;
+  margin: 250px 0;
   font-size: 2rem;
 }
 
@@ -286,10 +281,10 @@ input {
   opacity: 0;
   transition: 0.3s;
 }
-.formData[data-error-visible="true"]::after {
+.formData[data-error-visible='true']::after {
   opacity: 1;
 }
-.formData[data-error-visible="true"] .text-control {
+.formData[data-error-visible='true'] .text-control {
   border: 2px solid #e54858;
 }
 
@@ -322,7 +317,7 @@ input {
 }
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
-  content: "";
+  content: '';
   width: 13px;
   height: 13px;
   background-color: #279e7a;
@@ -377,7 +372,7 @@ input {
 .close:after {
   position: absolute;
   left: 15px;
-  content: " ";
+  content: ' ';
   height: 33px;
   width: 3px;
   background-color: #fff;
@@ -418,7 +413,7 @@ input {
 /* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
-  content: "";
+  content: '';
   top: 10px;
   right: 13px;
   width: 11px;
@@ -492,7 +487,7 @@ input {
 }
 
 .hero-content::after {
-  content: "";
+  content: '';
   width: 100%;
   height: 100%;
   background: #232323;

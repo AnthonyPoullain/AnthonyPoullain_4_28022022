@@ -128,4 +128,6 @@ function validate() {
 
   if (formIsValid) displayThankYou()
   return false
+  // false keeps the page from refreshing on submit to display confirmation popup.
+  // If submit needs to function normally, return 'formIsValid' instead.
 }
